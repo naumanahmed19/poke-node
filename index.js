@@ -4,7 +4,7 @@ const pokemons = require('./routes/pokemons');
 
 const app = express();
 
-const url = 'https://pokeapi.co/api/v2/pokemon/'
+
 
 
 mongoos.connect('mongodb://localhost/poke', { useNewUrlParser: true })
