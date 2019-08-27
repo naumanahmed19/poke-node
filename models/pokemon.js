@@ -1,6 +1,6 @@
-const mongoos = require('mongoose');
+const mongoose = require('mongoose');
 
-const Pokemon = mongoos.model('Pokemon', new mongoos.Schema({
+const Pokemon = mongoose.model('Pokemon', new mongoose.Schema({
     image: String,
     name: String,
     weight: Number,

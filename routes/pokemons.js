@@ -18,15 +18,18 @@ router.get('/:id', async (req, res) => {
 
 
 
+
 async function importPokemon(url) {
     await axios.get(url)
         .then(function (res) {
+            let data = res.data;
             try {
                 let pokemon = new Pokemon({
-                    image: res.data.sprites.front_default,
-                    name: res.data.name,
-                    weight: res.data.weight,
-                    height: res.data.height,
+                    image: data.sprites.front_default,
+                    name: data.name,
+                    weight: data.weight,
+                    height: data.height,
+                    base_experience: data.base_experience
                 });
 
                 const result = pokemon.save()
