@@ -4,6 +4,7 @@ const express = require('express');
 const pokemons = require('./routes/pokemons');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+const favourites = require('./routes/favourites');
 
 
 //Setup APP
@@ -22,17 +23,19 @@ mongoos.connect('mongodb://localhost/poke', { useNewUrlParser: true })
 
 
 //Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.all('/*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
+// app.all('/*', function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+// });
 
 app.use('/api/pokemons', pokemons);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/favourites', favourites);
 
 
 //Port Settings

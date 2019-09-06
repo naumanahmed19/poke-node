@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
-const config = require('config')
+const config = require('config');
+const favouriteSchema = require('./favourite')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -22,12 +23,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 1024
+    },
+    favourites: {
+        type: favouriteSchema,
     }
 });
 
 
 userSchema.methods.generateAuthToken = function () {
-    return jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+    return jwt.sign({ _id: this._id, name: this.name }, config.get('jwtPrivateKey'));
 }
 
 const User = mongoose.model('User', userSchema);
