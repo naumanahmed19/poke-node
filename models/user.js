@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const favouriteSchema = require('./favourite')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -24,9 +23,6 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024
     },
-    favourites: {
-        type: favouriteSchema,
-    }
 });
 
 
