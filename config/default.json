@@ -1,5 +1,5 @@
 {
     "name": "Pokemon App",
-    "pokeApi": "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",
+    "pokeApi": "https://pokeapi.co/api/v2/pokemon?offset=0&limit=-1",
     "jwtPrivateKey": ""
 }
