@@ -1,19 +1,8 @@
-const config = require('config');
 const express = require('express');
 const { Pokemon } = require('../models/pokemon');
-const { User } = require('../models/user');
-const axios = require('axios');
 const auth = require('../middleware/auth')
 const router = express.Router();
 
-
-
-router.get('/', auth, async (req, res) => {
-    const userId = req.user._id;
-    console.log(userId);
-    const pokemons = await Pokemon.find({ 'likes': userId }).sort('name');
-    res.send(pokemons)
-})
 
 
 router.post('/', auth, async (req, res) => {
