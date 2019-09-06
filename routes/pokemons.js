@@ -1,26 +1,13 @@
-const config = require('config');
 const express = require('express');
-const { Pokemon } = require('../models/pokemon');
 const axios = require('axios');
-
-const auth = require('../middleware/auth')
-
 const jwt = require('jsonwebtoken');
+const config = require('config');
+const { Pokemon } = require('../models/pokemon');
 
 const router = express.Router();
 
 
-
 router.get('/', async (req, res) => {
-
-
-    let $filter = {};
-
-
-    // if (req.query.s) {
-    //     $term = { $text: { $search: req.query.s } };
-    //     Object.assign($filter, $term);
-    // }
 
     if (req.query.favourites) {
         const token = req.headers['x-auth-token'];
@@ -37,10 +24,6 @@ router.get('/', async (req, res) => {
         }
     }
 
-    // if (req.query.likes) {
-    //     res.status(401).send({ 'error': 'Access denied' });
-    // }
-
     function escapeRegex(text) {
         return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     };
@@ -50,17 +33,12 @@ router.get('/', async (req, res) => {
         req.query.name = regex;
     }
 
-
-    //$filter = req.query;
-    console.log(req.query);
-
     try {
         const pokemons = await Pokemon
             .find({ $and: [req.query] })
             .sort('name');
         res.send(pokemons)
     } catch (ex) {
-
         console.log(ex);
     }
 
@@ -71,9 +49,6 @@ router.get('/:id', async (req, res) => {
     const pokemons = await Pokemon.findById(req.params.id);
     res.send(pokemons)
 })
-
-
-
 
 
 async function importPokemon(url) {
