@@ -5,12 +5,13 @@ const pokemons = require('./routes/pokemons');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const favourites = require('./routes/favourites');
-
+const cors = require('cors');
 
 //Setup APP
 const app = express();
 
 require('./middleware/prod')(app);
+
 
 
 if (!confg.get('jwtPrivateKey')) {
@@ -29,6 +30,8 @@ mongoos.connect(confg.get('db'), { useNewUrlParser: true })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
 
 app.use('/api/pokemons', pokemons);
 app.use('/api/users', users);
