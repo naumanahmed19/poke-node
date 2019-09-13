@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "poke_jwtPrivateKey"
+    "jwtPrivateKey": "poke_jwtPrivateKey",
+    "db": "poke_db"
 }
