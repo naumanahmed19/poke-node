@@ -19,7 +19,7 @@ if (!confg.get('jwtPrivateKey')) {
 }
 
 //Connect to database
-mongoos.connect(confg.get('dv'), { useNewUrlParser: true })
+mongoos.connect(confg.get('db'), { useNewUrlParser: true })
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.log('Could not connect to MongoDB...'));
 
