@@ -10,6 +10,9 @@ const favourites = require('./routes/favourites');
 //Setup APP
 const app = express();
 
+require('./middleware/prod')(app);
+
+
 if (!confg.get('jwtPrivateKey')) {
     console.log('FATAL ERROR: jwtPrivateKey key is not define');
     process.exit(1);
